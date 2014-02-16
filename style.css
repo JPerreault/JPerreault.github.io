@@ -29,7 +29,16 @@ body
 
 .title
 {
-	margin-bottom: 75px;
+	margin-left: 2.5%;
+	height:300px;
+	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.imagelinks
+{
+	float: right;
+	height: 300px;
+	width: 600px;
 }
