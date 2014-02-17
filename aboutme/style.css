@@ -14,36 +14,19 @@ body
 	font-size: 40px;
 }
 
-#projects
+.text
 {
-	text-align: left;
 	font-family: Verdana;
-	font-size: 15px;
-}
-
-#bottombar
-{
-	padding: 15px;
-}
-
-.project
-{
-	font-size: 15px;
+	font-size: 13px;
 	font-weight: normal;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
 .title
 {
-	margin-left: 2.5%;
-	height:300px;
+	margin-left: 2.5%;	
 	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: bold;
-}
-
-.imagelinks
-{
-	float: right;
-	height: 300px;
-	width: 600px;
-}
+}	
