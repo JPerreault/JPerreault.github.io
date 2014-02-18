@@ -24,6 +24,11 @@ body
 #bottombar
 {
 	padding: 15px;
+	position: relative;
+	clear: left;
+	font-family: Garamond;
+	font-size: 14px;
+	font-weight: normal;
 }
 
 .text
@@ -43,6 +48,7 @@ body
 	font-size: 20px;
 	font-weight: bold;
 	height: 400px;
+	position: absolute;
 }
 
 .para
