@@ -3,7 +3,7 @@ body
     background: #000;
     color: #000;
     margin: 5;
-    font-family: Garamond;
+    font-family: Roboto;
     text-align: center;
     background-color: #f0f0f0;
 }
@@ -26,14 +26,14 @@ body
 	padding: 15px;
 	position: relative;
 	clear: left;
-	font-family: Garamond;
+	font-family: Roboto;
 	font-size: 14px;
 	font-weight: normal;
 }
 
 .text
 {
-	font-family: Verdana;
+	font-family: Roboto;
 	font-size: 13px;
 	font-weight: normal;
 	text-align: left;
