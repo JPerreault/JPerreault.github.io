@@ -66,3 +66,27 @@ body
 	margin-left: 35px;
 	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px; 
 }
+
+a:link 
+{
+	text-decoration:none;
+	color: #41608C;
+}
+
+a:visited 
+{
+	text-decoration:none;
+	color: #41608C;
+}
+
+a:hover 
+{
+	text-decoration:underline;
+	color: #5F8DCF;
+}
+
+a:active
+{
+	text-decoration:underline;
+	color: #5F8DCF;
+}

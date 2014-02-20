@@ -16,8 +16,8 @@ body
 #selfpic
 {
 	float: left;
-	height: 400px;
-	width: 380px;
+	height: 360px;
+	width: 330px;
 	margin-right: 15px;
 	box-shadow:rgba(0,0,0,0.5) 5px 5px 24px;
 }
@@ -52,4 +52,28 @@ body
 	width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+a:link 
+{
+	text-decoration:none;
+	color: #41608C;
+}
+
+a:visited 
+{
+	text-decoration:none;
+	color: #41608C;
+}
+
+a:hover 
+{
+	text-decoration:underline;
+	color: #5F8DCF;
+}
+
+a:active
+{
+	text-decoration:underline;
+	color: #5F8DCF;
 }
