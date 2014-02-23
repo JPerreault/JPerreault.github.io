@@ -55,7 +55,8 @@ body
 	height: 300px;
 	width: 600px;
 	margin-right: 35px;
-	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px; 
+	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+	border-radius: 8px 8px 8px 8px;
 }
 
 .imagelinksR
@@ -65,6 +66,7 @@ body
 	width: 600px;
 	margin-left: 35px;
 	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px; 
+	border-radius: 8px 8px 8px 8px;
 }
 
 a:link 
