@@ -13,6 +13,7 @@
         <script src="js/THREEx.KeyboardState.js"></script>
         <script src="js/THREEx.FullScreen.js"></script>
         <script src="js/THREEx.WindowResize.js"></script>
+        <script src="js/popup.js"></script>
         
         <!-- jQuery code to display an information button and box when clicked. -->
         <script src="js/jquery-1.9.1.js"></script>
@@ -23,17 +24,26 @@
         <!-- ------------------------------------------------------------ -->
         
         <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+        
+        <div align = "left" style = "display: none;  padding: 0 !important; bottom: 32.5%; left: 20%; position: absolute; height: 10px; width: 200px;" id = "koreanwords">
+			<div id = "korean" style ="font-size:18px; font-weight:500" class="floatingTextContainer"></div>
+		</div>
+        
+        <div align = "right" style = "display: none;  padding: 0 !important; bottom: 32.5%; left: 65%; position: absolute; height: 10px; width: 200px;" id = "englishwords">
+			<div id = "english" style ="font-size:18px; font-weight:500" class="floatingTextContainer"></div>
+		</div>
+        
         <script>
             /*
-             Three.js "tutorials by example"
-             Author: Lee Stemkoski
-             Date: July 2013 (three.js v59dev)
-             */
+             PROJECT MODIFIED FROM WORK BY LEE STEMKOSKI
+             LINK TO HIS WEBSITE: stemkoski.github.io/Three.js/
+            */
         
         // MAIN
         
         // standard global variables
         var container, scene, camera, renderer, controls;
+        var isWordsOn = false;
         var keyboard = new THREEx.KeyboardState();
         var clock = new THREE.Clock();
         // custom global variables
@@ -92,7 +102,8 @@
             
             // this material causes a mesh to use colors assigned to faces
             var faceColorMaterial = new THREE.MeshBasicMaterial({
-                                                                color: 0xffffff, vertexColors: THREE.FaceColors } );
+                    color: 0xffffff, vertexColors: THREE.FaceColors
+            } );
                                                                 
             var sphereGeometry = new THREE.SphereGeometry( 80, 32, 16 );
             for ( var i = 0; i < sphereGeometry.faces.length; i++ )
@@ -100,22 +111,95 @@
                 face = sphereGeometry.faces[ i ];
                 face.color.setRGB( 0, 0, 0.8 * Math.random() + 0.2 );
             }
-                                                                var sphere = new THREE.Mesh( sphereGeometry, faceColorMaterial );
-                                                                sphere.audio = new Audio('audio/1.m4a');
-                                                                sphere.playAudio = function(){sphere.audio.play();}
-                                                                sphere.position.set(1500, 100, 0);
-                                                                scene.add(sphere);
-                                                                
-                                                                targetList.push(sphere);
-                                                                
-                                                                //////////////////////////////////////////////////////////////////////
-                                                                
-                                                                // initialize object to perform world/screen calculations
-                                                                projector = new THREE.Projector();
-                                                                
-                                                                // when the mouse moves, call the given function
-                                                                document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-                                                                
+            
+            for (var i = 1; i < 13; i++)
+            {
+                var sphere = new THREE.Mesh( sphereGeometry, faceColorMaterial );
+                sphere.identifier = i;
+                sphere.playAudio = function(){var audio = new Audio(('audio/'+sphere.identifier+'.m4a'));audio.play();}
+                
+                if (i === 1)
+                {
+                   sphere.position.set(1500, 100, 0);
+                   sphere.textBoxOne = '오전 보통 아홉시 삼십분에 일어나요.\n그러나 주말에는 오후 한시에 일어나요.';
+                   sphere.textBoxTwo = 'Usually, I wake up at 9:30 A.M.\nHowever, on the weekend, I wake up at 1:00 P.M.';
+                }
+                else if (i === 2)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '지난 수요일 아침에 사과를 먹었어요.';
+                    sphere.textBoxTwo = 'I ate an apple in the morning last Wednesday.';
+                }
+                else if (i === 3)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '열시에 교실로 가요.';
+                    sphere.textBoxTwo = 'I go to class at 10:00.';
+                }
+                else if (i === 4)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '한국어 수업이 재미있어요.';
+                    sphere.textBoxTwo = 'Korean class is interesting.';
+                }
+                else if (i === 5)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '가끔 나는 자요. 그래서 수업에 못 가요.';
+                    sphere.textBoxTwo = 'Sometimes, I sleep and do not go to class.';
+                }
+                else if (i === 6)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '오후에 숙제해요.';
+                    sphere.textBoxTwo = 'I do homework in the afternoon.';
+                }
+                else if (i === 7)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '지난 금요일, 어려운 시험이 있었어요.';
+                    sphere.textBoxTwo = 'Last Friday, I had a difficult test.';
+                }
+                else if (i === 8)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '주말에 파티해요.';
+                    sphere.textBoxTwo = 'I party on the weekends.';
+                }
+                else if (i === 9)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '한국에 수업이 오후 한시 이십오분에 있어요.';
+                    sphere.textBoxTwo = 'Korean class is at 1:25 P.M.';
+                }
+                else if (i === 10)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '내 컴퓨터로 게임을 해요.';
+                    sphere.textBoxTwo = 'I play games on my computer.';
+                }
+                else if (i === 11)
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '나는 아파트에서 맛있는 음식을 먹어요.';
+                    sphere.textBoxTwo = 'I eat delicious food in my apartment.';
+                }
+                else
+                {
+                    sphere.position.set(1500, 100, 0);
+                    sphere.textBoxOne = '보통 오전 세시쯤에 자요.';
+                    sphere.textBoxTwo = 'I usually sleep around 3:00 A.M.';
+                }
+                
+                scene.add(sphere);
+                targetList.push(sphere);
+           
+            }
+            
+            projector = new THREE.Projector();
+
+            document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+            
         }
         
         function onDocumentMouseDown( event ) 
@@ -138,8 +222,31 @@
             // if there is one (or more) intersections
             if ( intersects.length > 0 )
             {
-                console.log(intersects[0].object);
-                intersects[0].object.playAudio();
+                console.log(intersects[0].object.textBoxOne);
+                console.log(intersects[0].object.identifier);
+                //intersects[0].object.playAudio();
+                
+                var audio = new Audio('audio/'+intersects[0].object.identifier+'.m4a');
+                audio.play();
+
+
+                document.getElementById('korean').innerHTML = intersects[0].object.textBoxOne;
+                document.getElementById('english').innerHTML = intersects[0].object.textBoxTwo;
+                if (isWordsOn === false)
+                {
+                    $("#koreanwords").fadeIn(50);
+                    $("#englishwords").fadeIn(50);
+                    
+                }
+                isWordsOn = true;
+                document.getElementById('korean').style.background = '#d7432f';
+                document.getElementById('english').style.background = '#d7432f';
+            }
+            else
+            {
+                $("#koreanwords").fadeOut(50);
+                $("#englishwords").fadeOut(50);
+                isWordsOn = false;
             }
         }
         
