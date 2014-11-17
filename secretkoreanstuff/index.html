@@ -42,7 +42,7 @@
         // MAIN
         
         // standard global variables
-        var container, scene, camera, renderer, controls;
+        var container, scene, camera, renderer, controls, audio;
         var isWordsOn = false;
         var keyboard = new THREEx.KeyboardState();
         var clock = new THREE.Clock();
@@ -112,7 +112,7 @@
                 face.color.setRGB( 0, 0, 0.8 * Math.random() + 0.2 );
             }
             
-            for (var i = 1; i < 13; i++)
+            for (var i = 1; i < 15; i++)
             {
                 var sphere = new THREE.Mesh( sphereGeometry, faceColorMaterial );
                 
@@ -132,9 +132,9 @@
                 }
                 else if (i === 3)
                 {
-                    var cubeGeometry = new THREE.CubeGeometry( 300, 600, 5 );
+                    var cubeGeometry = new THREE.CubeGeometry( 300, 300, 5 );
                     sphere = new THREE.Mesh( cubeGeometry, faceColorMaterial );
-                    sphere.position.set(-350, -1100, 1500);
+                    sphere.position.set(-350, -1350, 1500);
                     sphere.textBoxOne = '열시에 교실로 가요.';
                     sphere.textBoxTwo = 'I go to class at 10:00.';
                 }
@@ -203,13 +203,31 @@
                     sphere.textBoxOne = '나는 아파트에서 맛있는 음식을 먹어요.';
                     sphere.textBoxTwo = 'I eat delicious food in my apartment.';
                 }
-                else
+                else if (i === 12)
                 {
                     var cubeGeometry = new THREE.CubeGeometry( 640, 200, 5 );
                     sphere = new THREE.Mesh( cubeGeometry, faceColorMaterial );
                     sphere.position.set(-800, 50, -1500);
                     sphere.textBoxOne = '보통 오전 세시쯤에 자요.';
                     sphere.textBoxTwo = 'I usually sleep around 3:00 A.M.';
+                }
+                else if (i === 13)
+                {
+                    //WINDOW --> startpoint of exam
+                    var cubeGeometry = new THREE.CubeGeometry( 5, 1000, 1000 );
+                    sphere = new THREE.Mesh( cubeGeometry, faceColorMaterial );
+                    sphere.position.set(1600, 0, -1600);
+                    sphere.textBoxOne = '날씨는 추워요. 그래서, 좋아 안 해요.';
+                    sphere.textBoxTwo = 'The weather is cold. Therefore, I do not like it.';
+                }
+                else
+                {
+                    //DOOR --> startpoint of whole door
+                    var cubeGeometry = new THREE.CubeGeometry( 300, 300, 5 );
+                    sphere = new THREE.Mesh( cubeGeometry, faceColorMaterial );
+                    sphere.position.set(-350, -900, 1500);
+                    sphere.textBoxOne = '화요일에, 저녁에, 도서관에 가요. 도서관에서 공부해요 하고 책을 읽어요.';
+                    sphere.textBoxTwo = 'On Tuesday, at night, I go to the library. In the library, I read books and study.';
                 }
                 sphere.identifier = i;
                 sphere.playAudio = function(){var audio = new Audio(('audio/'+sphere.identifier+'.m4a'));audio.play();}
@@ -250,7 +268,9 @@
                 console.log(intersects[0].object.identifier);
                 //intersects[0].object.playAudio();
                 
-                var audio = new Audio('audio/'+intersects[0].object.identifier+'.m4a');
+                if (audio !== undefined)
+                    audio.pause();
+                audio = new Audio('audio/'+intersects[0].object.identifier+'.m4a');
                 audio.play();
 
 
